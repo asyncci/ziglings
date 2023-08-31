@@ -17,7 +17,7 @@ const Elephant = struct {
 
     // Elephant tail methods!
     pub fn getTail(self: *Elephant) *Elephant {
-        return self.tail.?; // Remember, this means "orelse unreachable"
+        return self.tail orelse unreachable;
     }
 
     pub fn hasTail(self: *Elephant) bool {
@@ -27,7 +27,13 @@ const Elephant = struct {
     // Your Elephant trunk methods go here!
     // ---------------------------------------------------
 
-    ???
+    pub fn getTrunk(self: *Elephant) *Elephant {
+        return self.trunk orelse unreachable;
+    }
+
+    pub fn hasTrunk(self: *Elephant) bool {
+        return (self.trunk != null);
+    }
 
     // ---------------------------------------------------
 
@@ -76,7 +82,6 @@ fn visitElephants(first_elephant: *Elephant) void {
             break;
         }
     }
-
     // We follow the trunks!
     while (true) {
         e.print();
